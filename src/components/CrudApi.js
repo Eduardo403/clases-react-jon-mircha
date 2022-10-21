@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  HashRouter,
-  NavLink,
-  Switch,
-} from "react-router-dom";
+import { Route, HashRouter, NavLink, Switch } from "react-router-dom";
 import { helpHttp } from "../helpers/helpHttp";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
@@ -108,14 +101,14 @@ const CrudApi = () => {
       <HashRouter basename="santos">
         <header>
           <h2>Crud con rutas</h2>
-          <NavLink to="/" activeClassName="active">
-            Santos
-          </NavLink>
           <NavLink to="/agregar" activeClassName="active">
             Agregar
           </NavLink>
           <NavLink to="/editar" activeClassName="active">
             Editar
+          </NavLink>
+          <NavLink to="/" activeClassName="active">
+            Santos
           </NavLink>
         </header>
         <Switch>

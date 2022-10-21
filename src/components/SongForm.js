@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const initialForm = {
   artist: "",
   song: "",
 };
 
-const SongForm = ({ handleSearch }) => {
+const SongForm = ({ handleSearch, handelSaveSong, diseibol }) => {
   const [form, setForm] = useState(initialForm);
+
+  let history = useHistory();
 
   const handleChange = (e) => {
     setForm({
@@ -25,6 +28,8 @@ const SongForm = ({ handleSearch }) => {
 
     handleSearch(form);
     setForm(initialForm);
+
+    history.push("/detalles");
   };
 
   return (
@@ -45,6 +50,12 @@ const SongForm = ({ handleSearch }) => {
           value={form.song}
         />
         <input type="submit" value="Enviar" />
+        <input
+          type="button"
+          value="Agregra Favoritas"
+          onClick={handelSaveSong}
+          disabled={diseibol && "disabled"}
+        />
       </form>
     </div>
   );

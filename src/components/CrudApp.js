@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { HashRouter, NavLink, Route, Switch } from "react-router-dom";
 import CrudForm from "./CrudForm";
 import CrudTable from "./CrudTable";
 
@@ -60,20 +61,46 @@ const CrudApp = () => {
 
   return (
     <div>
-      <h2>CRUD App</h2>
-      <article className="grid-1-2">
-        <CrudForm
-          createData={createData}
-          updateData={updateData}
-          dataToEdit={dataToEdit}
-          setDataToEdit={setDataToEdit}
-        />
-        <CrudTable
-          data={db}
-          setDataToEdit={setDataToEdit}
-          deleteData={deleteData}
-        />
-      </article>
+      <HashRouter basename="santos">
+        <NavLink to="/editar" activeClassName="active">
+          Editar
+        </NavLink>
+        <NavLink to="/agregar" activeClassName="active">
+          Agregra
+        </NavLink>
+        <NavLink to="/" activeClassName="active">
+          Santos
+        </NavLink>
+        <Switch>
+          <Route exact path="/editar">
+            <CrudForm
+              createData={createData}
+              updateData={updateData}
+              dataToEdit={dataToEdit}
+              setDataToEdit={setDataToEdit}
+            />
+          </Route>
+          <Route exact path="/agregar">
+            <CrudForm
+              createData={createData}
+              updateData={updateData}
+              dataToEdit={dataToEdit}
+              setDataToEdit={setDataToEdit}
+            />
+          </Route>
+          <Route exact path="/">
+            <h2>CRUD App</h2>
+            <article className="grid-1-2">
+              <CrudTable
+                data={db}
+                setDataToEdit={setDataToEdit}
+                deleteData={deleteData}
+              />
+            </article>
+          </Route>
+          <Route path="*" children="Not found" />
+        </Switch>
+      </HashRouter>
     </div>
   );
 };

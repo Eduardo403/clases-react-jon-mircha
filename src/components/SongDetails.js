@@ -1,9 +1,12 @@
 import Message from "./Message";
 import SongArtist from "./SongArtist";
 import SongLyric from "./SongLyric";
+import React from "react";
 
 const SongDetails = ({ search, lyric, bio }) => {
-  if (!lyric || !bio) return null;
+  if (!bio || !lyric) {
+    return null;
+  }
 
   return (
     <>
